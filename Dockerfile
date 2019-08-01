@@ -39,6 +39,7 @@ RUN ln -s /data/media/json media/       \
     && ln -s /data/media/pdf media/     \
     && ln -s /data/media/epub media/    \
     && ln -s /data/public_web_root .    \
-    && ln -s /data/user_builds .
+    && ln -s /data/user_builds .        \
+    && ln -s /data/local_settings.py readthedocs/settings/local_settings.py
 
 ENTRYPOINT ["/entrypoint.sh"]
