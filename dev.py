@@ -21,7 +21,7 @@ class CommunityDevSettings(CommunityBaseSettings):
             }
         }
 
-    USE_SUBDOMAIN = False
+    USE_SUBDOMAIN = True
 
     # Enable private Git doc repositories
     ALLOW_PRIVATE_REPOS = True
