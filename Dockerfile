@@ -22,6 +22,7 @@ WORKDIR /home/docs
 RUN git clone https://github.com/rtfd/readthedocs.org.git
 WORKDIR /home/docs/readthedocs.org
 RUN $PIP install -r requirements.txt                    \
+    && $PIP install django-allauth                      \
     && pip3.6 install sphinxcontrib-svg2pdfconverter    \
     && pip3.7 install sphinxcontrib-svg2pdfconverter
 
