@@ -14,6 +14,12 @@ RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /data \
     && chown docs:docs /data
+    
+# Go
+RUN curl -LsSO https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.12.7.linux-amd64.tar.gz \
+    && export PATH=$PATH:/usr/local/go/bin \
+    && go get github.com/rtfd/godocjson
 
 USER docs
 WORKDIR /home/docs
@@ -24,12 +30,6 @@ WORKDIR /home/docs/readthedocs.org
 RUN $PIP install -r requirements.txt                    \
     && pip3.6 install sphinxcontrib-svg2pdfconverter    \
     && pip3.7 install sphinxcontrib-svg2pdfconverter
-
-# Go
-RUN curl -LsSO https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go1.12.7.linux-amd64.tar.gz \
-    && export PATH=$PATH:/usr/local/go/bin \
-    && go get github.com/rtfd/godocjson
 
 ENV DJANGO_SETTINGS_MODULE=readthedocs.settings.dev
 
