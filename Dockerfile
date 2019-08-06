@@ -16,9 +16,11 @@ RUN mkdir /data \
     && chown docs:docs /data
     
 # Go
-RUN curl -LsSO https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go1.12.7.linux-amd64.tar.gz \
-    && export PATH=$PATH:/usr/local/go/bin \
+ENV GO_VERSION 1.12.7
+ENV PATH "$PATH:/usr/local/go/bin"
+
+RUN curl -LsSO https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz \
     && go get github.com/rtfd/godocjson
 
 USER docs
